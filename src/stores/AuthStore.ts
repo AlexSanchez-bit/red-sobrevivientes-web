@@ -3,7 +3,6 @@ import { supabase } from "@/setup";
 import { useToastStorage } from "@/stores/ToasterStorage";
 import router from "@/router";
 import { v4 as uuidv4 } from "uuid";
-import { useCartStore } from "./cartStore";
 
 let sessionId: string = "";
 
@@ -55,8 +54,6 @@ export const useAuthStore = defineStore("authStore", {
       this._authenticated = true;
       this._userData = data;
       this._anonymous = data.is_anonymous;
-      const { getMyCart } = useCartStore();
-      getMyCart();
     },
     async logout() {
       const { notify } = useToastStorage();
