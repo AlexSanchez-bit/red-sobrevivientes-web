@@ -4,6 +4,7 @@ import Toast from "primevue/toast";
 import ConfirmDialog from "primevue/confirmdialog";
 import { useToastStorage } from "./stores/ToasterStorage";
 import { useToast } from "primevue/usetoast";
+import ChatButton from "./components/Chat/ChatButton.vue";
 const toastStorage = useToastStorage();
 const toast = useToast();
 toastStorage.addtoaster(toast);
@@ -13,4 +14,6 @@ toastStorage.addtoaster(toast);
   <RouterView />
   <Toast />
   <ConfirmDialog></ConfirmDialog>
+
+  <ChatButton />
 </template>
