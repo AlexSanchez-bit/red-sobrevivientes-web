@@ -101,5 +101,32 @@ export const useChatService = () => {
     return { data, error };
   };
 
-  return { initChatUser, get_or_create_chat, sendMessage, loadChatMessages };
+  const channel = ref<any>();
+
+  const enableMessageListenning = (callback: (param: any) => void) => {
+    channel.value = supabase.channel("chat_messages");
+    channel.value.on(
+      "postgres_changes",
+      { event: "INSERT", schema: "public", table: "chat_message" },
+      (payload) => {
+        if (payload.new.user != user.value.id) {
+          let from = "bot";
+          if (payload.new.user !== user.value.id && payload.new.user != null) {
+            from = "humanuser";
+          }
+          payload.new.user = from;
+          callback(payload.new);
+        }
+      },
+    );
+    channel.value.subscribe();
+  };
+
+  return {
+    initChatUser,
+    get_or_create_chat,
+    sendMessage,
+    loadChatMessages,
+    enableMessageListenning,
+  };
 };

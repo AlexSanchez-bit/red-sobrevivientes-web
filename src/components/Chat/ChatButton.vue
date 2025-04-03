@@ -2,14 +2,23 @@
   <div>
     <!-- Botón flotante de chat -->
     <div class="fixed right-4 bottom-4 z-50">
-      <Button
-        v-if="aviable_chat"
-        icon="pi pi-comment"
-        class="chat-btn"
-        @click="toggleChat"
-      />
+      <OverlayBadge
+        :value="`${unreadMessages}`"
+        severity="danger"
+        :class="{
+          inactive: !aviable_chat || unreadMessages == 0,
+        }"
+      >
+        <Button
+          v-if="aviable_chat"
+          icon="pi pi-comment"
+          class="chat-btn"
+          @click="toggleChat"
+        />
+      </OverlayBadge>
+
       <transition name="chat-transition">
-        <div v-if="isChatOpen" class="chat-overlay">
+        <div @keydown.esc="toggleChat" v-show="isChatOpen" class="chat-overlay">
           <!-- Contenedor del chat: full screen en móviles, modal en desktop -->
           <div
             class="chat-container w-full h-full"
@@ -101,6 +110,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, nextTick, watch, Ref } from "vue";
 import Button from "primevue/button";
+import OverlayBadge from "primevue/overlaybadge";
 import {
   useChatService,
   type Message,
@@ -118,6 +128,14 @@ const messageInput = ref<HTMLTextAreaElement | null>(null);
 
 const { notify } = useToastStorage();
 const service = useChatService();
+const unreadMessages = ref(0);
+
+const scrollDown = async () => {
+  await nextTick();
+  if (messagesContainer.value) {
+    messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight;
+  }
+};
 
 onMounted(async () => {
   const { error } = await service.initChatUser();
@@ -132,18 +150,35 @@ onMounted(async () => {
   }
   messages.value = [...load_data];
   aviable_chat.value = true;
+
+  service.enableMessageListenning(async (message) => {
+    if (!isChatOpen.value) {
+      unreadMessages.value += 1;
+    }
+    messages.value.push({
+      from: message.user,
+      text: message.content,
+      status: MessageStatus.READED,
+      created_at: new Date(message.created_at),
+    });
+
+    await scrollDown();
+  });
+
+  await scrollDown();
 });
 
 watch(messages, async () => {
   // Espera a que se rendericen los nuevos mensajes y luego realiza scroll
-  await nextTick();
-  if (messagesContainer.value) {
-    messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight;
-  }
+  await scrollDown();
 });
 
 function toggleChat() {
   isChatOpen.value = !isChatOpen.value;
+  scrollDown();
+  if (isChatOpen.value) {
+    unreadMessages.value = 0;
+  }
 }
 
 async function sendMessage() {
@@ -154,7 +189,7 @@ async function sendMessage() {
     text: newMessage.value,
     status: MessageStatus.LOADING,
   };
-  messages.value.push(auxMessage);
+  messages.value.push(auxMessage as any);
   const messageIndex = messages.value.length - 1;
   const lastmsg = newMessage.value;
   newMessage.value = "";
@@ -165,9 +200,7 @@ async function sendMessage() {
   }
   messages.value[messageIndex].status = MessageStatus.SENT;
 
-  if (messagesContainer.value) {
-    messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight;
-  }
+  scrollDown();
 }
 
 function autoResize() {
@@ -194,7 +227,7 @@ const isMobile = computed(() => window.innerWidth < 640);
   z-index: 50;
 }
 .chat-btn:hover {
-  background-color: #2563eb;
+  background-color: #2563eb !important;
 }
 
 /* Overlay del chat */
@@ -261,9 +294,10 @@ const isMobile = computed(() => window.innerWidth < 640);
   background: transparent;
   color: #fff;
   transition: background-color 0.3s ease;
+  border: none !important;
 }
 .chat-close-btn:hover {
-  background-color: #2563eb;
+  background-color: #2563eb !important;
 }
 
 /* Área de mensajes */
@@ -337,17 +371,21 @@ const isMobile = computed(() => window.innerWidth < 640);
 .chat-transition-enter-active,
 .chat-transition-leave-active {
   transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
+    opacity 0.5s ease-in-out,
+    scale 0.4s ease-in-out,
+    transform 0.3s ease-in-out;
 }
 .chat-transition-enter-from,
 .chat-transition-leave-to {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateX(-100%);
 }
 .chat-transition-enter-to,
 .chat-transition-leave-from {
   opacity: 1;
-  transform: translateY(0);
+}
+
+.inactive :deep(.p-badge) {
+  display: none;
 }
 </style>
