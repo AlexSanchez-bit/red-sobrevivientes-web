@@ -94,6 +94,8 @@
                   @input="autoResize"
                 ></textarea>
                 <Button
+                  :loading="unanswered"
+                  :disabled="unanswered"
                   icon="pi pi-send"
                   class="chat-send-btn"
                   @click="sendMessage"
@@ -125,6 +127,8 @@ const newMessage = ref("");
 const messages = ref<Message[]>([]);
 const messagesContainer = ref<HTMLElement | null>(null);
 const messageInput = ref<HTMLTextAreaElement | null>(null);
+
+const unanswered = ref(false);
 
 const { notify } = useToastStorage();
 const service = useChatService();
@@ -163,6 +167,7 @@ onMounted(async () => {
     });
 
     await scrollDown();
+    unanswered.value = false;
   });
 
   await scrollDown();
@@ -194,9 +199,14 @@ async function sendMessage() {
   const lastmsg = newMessage.value;
   newMessage.value = "";
 
-  const { error } = await service.sendMessage(lastmsg);
+  unanswered.value = true;
+  const { data, error } = await service.sendMessage(lastmsg);
+  if (data.human_driven) {
+    unanswered.value = false;
+  }
   if (error) {
     messages.value[messageIndex].status = MessageStatus.ERROR;
+    unanswered.value = false;
   }
   messages.value[messageIndex].status = MessageStatus.SENT;
 
