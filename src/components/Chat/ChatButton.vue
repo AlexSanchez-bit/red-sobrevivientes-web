@@ -233,13 +233,14 @@ const isMobile = computed(() => window.innerWidth < 640);
   height: 4rem;
   border-radius: 9999px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  background-color: #3b82f6;
+  @apply bg-primary;
   border: none;
   transition: background-color 0.3s ease;
   z-index: 50;
 }
 .chat-btn:hover {
-  background-color: #2563eb !important;
+  @apply !bg-primary;
+  @apply opacity-90;
 }
 
 /* Overlay del chat */
@@ -290,7 +291,7 @@ const isMobile = computed(() => window.innerWidth < 640);
 
 /* Header del chat */
 .chat-header {
-  background-color: #3b82f6;
+  background-color: #844a6c;
   padding: 1rem;
   display: flex;
   justify-content: space-between;
@@ -309,7 +310,7 @@ const isMobile = computed(() => window.innerWidth < 640);
   border: none !important;
 }
 .chat-close-btn:hover {
-  background-color: #2563eb !important;
+  background-color: #844a6c !important;
 }
 
 /* Área de mensajes */
@@ -317,66 +318,86 @@ const isMobile = computed(() => window.innerWidth < 640);
   flex: 1;
   padding: 1rem;
   overflow-y: auto;
-  background-color: #f9fafb;
+  background-color: #844a6c;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-/* Estilos para los mensajes */
-.chat-message {
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  max-width: 80%;
-  word-break: break-word;
-}
+/* Mensajes del usuario (burbuja a la derecha, lila claro) */
 .chat-message-user {
   align-self: flex-end;
-  background-color: #d1fae5;
-  text-align: right;
-}
-.chat-message-bot {
-  align-self: flex-start;
-  background-color: #dbeafe;
-  text-align: left;
+  background-color: #e9c9e4;
+  color: black;
+  border-radius: 1.5rem;
+  padding: 0.5rem 1rem;
+  max-width: 70%;
+  font-size: 0.9rem;
 }
 
+/* Mensajes del bot (blanco, centrado) */
+.chat-message-bot {
+  align-self: center;
+  background-color: white;
+  color: black;
+  border-radius: 1.25rem;
+  padding: 1rem;
+  font-size: 0.95rem;
+  max-width: 85%;
+}
+
+/* Texto tipo "usuario humano" si aplica */
 .chat-message-human {
   align-self: flex-start;
-  background-color: #ff0aa0;
-  text-align: left;
+  background-color: #aa4a6a;
+  color: black;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.9rem;
 }
 
-/* Área de entrada */
+/* Entrada del mensaje */
 .chat-input-area {
-  padding: 0.75rem 1rem;
-  border-top: 1px solid #e5e7eb;
+  padding: 1rem;
+  background-color: #844a6c;
+  position: relative;
 }
+
 .chat-input-wrapper {
   display: flex;
-  align-items: flex-end;
-  gap: 0.5rem;
+  align-items: center;
+  position: relative;
 }
+
 .chat-input {
   flex: 1;
-  border: 1px solid #d1d5db;
-  border-radius: 1.25rem;
-  padding: 0.5rem 1rem;
+  border-radius: 1.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
   resize: none;
-  overflow: hidden;
-  transition: border-color 0.2s ease;
+  border: none;
+  background: white;
+  color: black;
 }
+
 .chat-input:focus {
   outline: none;
-  border-color: #3b82f6;
 }
+
+/* Botón de enviar */
 .chat-send-btn {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
   border-radius: 9999px;
-  background-color: #3b82f6;
-  transition: background-color 0.3s ease;
+  background-color: #93357d;
+  color: white;
+  height: 2.5rem;
+  width: 2.5rem;
 }
+
 .chat-send-btn:hover {
-  background-color: #2563eb;
+  background-color: #a84493;
 }
 
 /* Transiciones */
