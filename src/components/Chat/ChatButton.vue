@@ -43,7 +43,7 @@
                 v-for="(message, index) in messages"
                 :key="index"
                 :class="[
-                  'chat-message relative flex flex-wrap min-w-64 justify-between !pt-1',
+                  'chat-message relative flex flex-col max-w-64 justify-between !pt-1 break-words',
                   message.from === 'user'
                     ? 'chat-message-user'
                     : message.from === 'bot'
@@ -60,10 +60,10 @@
                         : "usuario humano"
                   }}
                 </span>
-                <span>
+                <span class="break-words leading-relaxed max-w-full">
                   {{ message.text }}
                 </span>
-                <span class="flex flex-row items-center justify-end">
+                <span class="flex flex-row items-center pb-2 justify-end">
                   <span class="text-xs text-gray-600">{{
                     message.created_at?.toLocaleDateString("en-US", {
                       hour12: true,
@@ -333,6 +333,7 @@ const isMobile = computed(() => window.innerWidth < 640);
   padding: 0.5rem 1rem;
   max-width: 70%;
   font-size: 0.9rem;
+  @apply break-words;
 }
 
 /* Mensajes del bot (blanco, centrado) */
@@ -344,6 +345,7 @@ const isMobile = computed(() => window.innerWidth < 640);
   padding: 1rem;
   font-size: 0.95rem;
   max-width: 85%;
+  @apply break-words;
 }
 
 /* Texto tipo "usuario humano" si aplica */
@@ -354,6 +356,7 @@ const isMobile = computed(() => window.innerWidth < 640);
   padding: 0.75rem;
   border-radius: 1rem;
   font-size: 0.9rem;
+  @apply break-words;
 }
 
 /* Entrada del mensaje */
@@ -420,5 +423,9 @@ const isMobile = computed(() => window.innerWidth < 640);
 
 .inactive :deep(.p-badge) {
   display: none;
+}
+
+.z-50 {
+  z-index: 99999 !important;
 }
 </style>

@@ -1,27 +1,31 @@
 <template>
   <div class="min-h-screen pb-5">
     <FirstSlide />
-    <AgressionStadistics />
-    <AboutUs />
-    <Sliders class="my-3" :service="service" :filters="[]" :orders="[]">
-      <template #header>
-        <h6
-          class="text-4xl text-center mt-6 decoration-black text-black uppercase"
-        >
-          Últimas Entradas
-        </h6>
-        <p
-          class="underline text-center mb-6 text-zinc-800 decoration-black mt-4 cursor-pointer uppercase"
-        ></p>
-      </template>
+    <div id="stadistics">
+      <AgressionStadistics />
+    </div>
+    <AboutUs id="about_us" />
+    <div id="blog">
+      <Sliders class="my-3" :service="service" :filters="[]" :orders="[]">
+        <template #header>
+          <h6
+            class="text-4xl text-center mt-6 decoration-black text-black uppercase"
+          >
+            Últimas Entradas
+          </h6>
+          <p
+            class="underline text-center mb-6 text-zinc-800 decoration-black mt-4 cursor-pointer uppercase"
+          ></p>
+        </template>
 
-      <template #item="{ item }">
-        <BlogCarouselItem :item="item" />
-      </template>
-    </Sliders>
+        <template #item="{ item }">
+          <BlogCarouselItem :item="item" />
+        </template>
+      </Sliders>
+    </div>
 
-    <TestimonyButton />
-    <DonationButton />
+    <TestimonyButton id="share_your_story" />
+    <DonationButton id="#donate" />
   </div>
 </template>
 

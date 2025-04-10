@@ -30,7 +30,7 @@
       />
     </div>
 
-    <!-- 🔽 Barra inferior solo en escritorio -->
+    <!-- Menú escritorio -->
     <div
       class="flex-row gap-1 sm:gap-3 items-center w-full overflow-hidden transition-all duration-500 hidden md:flex mt-2"
       :class="{
@@ -38,30 +38,36 @@
         'h-0 opacity-0': scrolled_ammount < 0 && scrolled > 50,
       }"
     >
-      <router-link
-        to="/statistics"
+      <span
         class="hover:bg-gray-50/20 hover:text-zinc-950/40 text-black p-2 rounded-sm cursor-pointer lg:text-md uppercase"
+        @click="scrollToSection('stadistics')"
       >
         Estadísticas
-      </router-link>
-      <router-link
-        to="/about_us"
+      </span>
+      <span
         class="hover:bg-gray-50/20 hover:text-zinc-950/40 text-black p-2 rounded-sm cursor-pointer lg:text-md uppercase"
+        @click="scrollToSection('about_us')"
       >
         Sobre nosotros
-      </router-link>
-      <router-link
-        to="/share_your_story"
+      </span>
+      <span
         class="hover:bg-gray-50/20 hover:text-zinc-950/40 text-black p-2 rounded-sm cursor-pointer lg:text-md uppercase"
+        @click="scrollToSection('share_your_story')"
       >
         Comparte tu historia
-      </router-link>
-      <router-link
-        to="/donate"
+      </span>
+      <span
+        class="hover:bg-gray-50/20 hover:text-zinc-950/40 text-black p-2 rounded-sm cursor-pointer lg:text-md uppercase"
+        @click="scrollToSection('blog')"
+      >
+        Blog
+      </span>
+      <span
         class="hover:bg-pink-100/30 bg-pink-50 text-[#6f2456] border border-[#6f2456] p-2 rounded-sm cursor-pointer lg:text-md font-semibold uppercase"
+        @click="scrollToSection('donate')"
       >
         Haz una donación
-      </router-link>
+      </span>
     </div>
   </nav>
 
@@ -72,49 +78,65 @@
     class="md:hidden p-4"
   >
     <div class="flex flex-col gap-4 text-black">
-      <router-link
-        to="/statistics"
-        class="uppercase font-semibold hover:underline"
-        @click="sidebarVisible = false"
+      <span
+        class="uppercase font-semibold hover:underline cursor-pointer"
+        @click="scrollToSection('statistics')"
       >
         Estadísticas
-      </router-link>
-      <router-link
-        to="/about_us"
-        class="uppercase font-semibold hover:underline"
-        @click="sidebarVisible = false"
+      </span>
+      <span
+        class="uppercase font-semibold hover:underline cursor-pointer"
+        @click="scrollToSection('about_us')"
       >
         Sobre nosotros
-      </router-link>
-      <router-link
-        to="/share_your_story"
-        class="uppercase font-semibold hover:underline"
-        @click="sidebarVisible = false"
+      </span>
+      <span
+        class="uppercase font-semibold hover:underline cursor-pointer"
+        @click="scrollToSection('share_your_story')"
       >
         Comparte tu historia
-      </router-link>
-      <router-link
-        to="/donate"
-        class="uppercase font-semibold bg-pink-100 text-[#6f2456] border border-[#6f2456] p-2 text-center rounded"
-        @click="sidebarVisible = false"
+      </span>
+      <span
+        class="uppercase font-semibold hover:underline cursor-pointer"
+        @click="scrollToSection('blog')"
+      >
+        Blog
+      </span>
+      <span
+        class="uppercase font-semibold bg-pink-100 text-[#6f2456] border border-[#6f2456] p-2 text-center rounded cursor-pointer"
+        @click="scrollToSection('donate')"
       >
         Haz una donación
-      </router-link>
+      </span>
     </div>
   </SideBar>
 </template>
 
 <script setup lang="ts">
 import { watch, ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import Button from "primevue/button";
 import SideBar from "primevue/sidebar";
 
 const sidebarVisible = ref(false);
 const route = useRoute();
+const router = useRouter();
 
 const scrolled = ref<number>(0);
 const scrolled_ammount = ref(-1);
+
+// Maneja el scroll hacia un elemento por ID
+const scrollToSection = async (id: string) => {
+  if (route.path !== "/") {
+    await router.push("/");
+    setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }, 300);
+  } else {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  }
+  sidebarVisible.value = false;
+};
 
 onMounted(() => {
   window.addEventListener("scroll", () => {
@@ -136,5 +158,11 @@ watch(
 <style scoped>
 a {
   text-transform: uppercase;
+}
+</style>
+
+<style>
+html {
+  scroll-behavior: smooth;
 }
 </style>

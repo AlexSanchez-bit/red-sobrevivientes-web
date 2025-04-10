@@ -1,169 +1,128 @@
 <template>
-  <div class="not-found">
-    <h1 class="title">¡Oops! Parece que te perdiste... 🐰</h1>
+  <div class="not-found bg-primary text-primary">
+    <h1 class="title text-primary">
+      ¡Oh no! Te has adentrado en terreno sagrado... 😶‍🌫️
+    </h1>
 
-    <!-- Contenedor de Mimi -->
-    <div class="mimi-container">
+    <!-- Contenedor del cardenal -->
+    <div class="cardinal-container">
       <svg
-        class="mimi"
-        viewBox="0 0 200 200"
+        class="cardinal"
+        viewBox="0 0 200 250"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <!-- Orejas -->
-        <ellipse
-          cx="70"
-          cy="40"
-          rx="18"
-          ry="45"
-          fill="#FFD700"
-          stroke="#E6B800"
-          stroke-width="3"
-        />
-        <ellipse
-          cx="130"
-          cy="40"
-          rx="18"
-          ry="45"
-          fill="#FFD700"
-          stroke="#E6B800"
-          stroke-width="3"
-        />
+        <!-- Solideo (gorro) -->
+        <ellipse cx="100" cy="40" rx="30" ry="20" fill="#7f1d1d" />
 
         <!-- Cabeza -->
         <circle
           cx="100"
-          cy="90"
-          r="50"
-          fill="#FFD700"
-          stroke="#E6B800"
+          cy="75"
+          r="35"
+          fill="#e5e7eb"
+          stroke="#111827"
           stroke-width="3"
         />
 
-        <!-- Cachetes -->
-        <circle cx="65" cy="110" r="12" fill="white" opacity="0.9" />
-        <circle cx="135" cy="110" r="12" fill="white" opacity="0.9" />
-
-        <!-- Cuerpo -->
-        <ellipse
-          cx="100"
-          cy="150"
-          rx="45"
-          ry="50"
-          fill="#FFD700"
-          stroke="#E6B800"
-          stroke-width="3"
-        />
-
-        <!-- Pancita blanca -->
-        <ellipse cx="100" cy="165" rx="25" ry="30" fill="white" opacity="0.9" />
-
-        <!-- Ojos -->
-        <circle cx="85" cy="85" r="5" fill="black" />
-        <circle cx="115" cy="85" r="5" fill="black" />
-
-        <!-- Nariz -->
-        <ellipse cx="100" cy="100" rx="5" ry="3" fill="black" />
-
-        <!-- Boca -->
-        <path
-          d="M 95 105 Q 100 115, 105 105"
-          stroke="black"
+        <!-- Cuerpo / sotana -->
+        <rect
+          x="60"
+          y="110"
+          width="80"
+          height="120"
+          rx="20"
+          fill="#1f2937"
+          stroke="#4b5563"
           stroke-width="2"
-          fill="none"
+        />
+
+        <!-- Capa roja -->
+        <path
+          d="M 60 110 Q 100 160 140 110 L 140 230 Q 100 250 60 230 Z"
+          fill="#7f1d1d"
+          opacity="0.8"
+        />
+
+        <!-- Cruz colgando -->
+        <line
+          x1="100"
+          y1="120"
+          x2="100"
+          y2="150"
+          stroke="#d1d5db"
+          stroke-width="2"
+        />
+        <line
+          x1="90"
+          y1="135"
+          x2="110"
+          y2="135"
+          stroke="#d1d5db"
+          stroke-width="2"
         />
       </svg>
 
       <span class="error-text">404</span>
     </div>
 
-    <p class="message">
-      Mimi no encuentra esta página, pero te puede llevar a casa 🏡
+    <p class="message text-primary">
+      El cardenal no reconoce este lugar... mejor volvamos antes que se haga un
+      exorcismo.
     </p>
 
-    <!-- Botón para volver -->
-    <router-link to="/" class="home-button">Volver al inicio</router-link>
+    <router-link to="/" class="home-button"> Volver al inicio </router-link>
   </div>
 </template>
 
 <script setup></script>
 
 <style scoped>
-/* Estilos generales */
 .not-found {
-  text-align: center;
-  padding: 40px;
-  background: #ffebf0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @apply text-center p-10 min-h-screen flex flex-col justify-center items-center;
 }
 
-/* Texto principal */
 .title {
-  font-size: 28px;
-  color: #ff69b4;
-  font-weight: bold;
-  margin-bottom: 10px;
+  @apply text-3xl font-bold mb-4;
 }
 
-/* Contenedor de Mimi */
-.mimi-container {
+.cardinal-container {
   position: relative;
   display: inline-block;
-  animation: bounce 1.5s infinite;
+  animation: float 3s ease-in-out infinite;
 }
 
-.mimi {
-  width: 150px;
+.cardinal {
+  width: 180px;
   height: auto;
+  filter: drop-shadow(0 0 6px #000);
 }
 
-/* Animación de Mimi brincando */
-@keyframes bounce {
+@keyframes float {
   0%,
   100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-20px);
+    transform: translateY(-10px);
   }
 }
 
-/* Número 404 */
 .error-text {
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 80px;
+  font-size: 70px;
   font-weight: bold;
-  color: #ffcc00;
-  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+  color: #facc15;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
 }
 
-/* Mensaje */
 .message {
-  font-size: 18px;
-  color: #c71585;
-  margin-top: 10px;
+  @apply text-lg mt-6;
 }
 
-/* Botón de volver */
 .home-button {
-  margin-top: 20px;
-  display: inline-block;
-  padding: 10px 20px;
-  background: #ff69b4;
-  color: white;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.home-button:hover {
-  background: #ff1493;
+  @apply mt-6 inline-block px-6 py-3 bg-primary hover:bg-primary text-white font-bold rounded-xl transition;
 }
 </style>

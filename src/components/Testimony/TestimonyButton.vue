@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center py-6 border border-red-700/20">
+  <div class="text-center py-6 border border-red-700/20 z-[999]">
     <Button
       label="Comparte tu historia"
       @click="openModal"
@@ -11,9 +11,10 @@
       header="Comparte tu testimonio"
       :modal="true"
       maximizable
+      dismissableMask
       mask-class="!bg-[#6f2465]/10"
-      content-class="!bg-[#6f2465]/10 !h-full !rounded-none"
-      class="!w-screen !h-screen lg:!w-[50vw] lg:!h-[90vh] !m-0 !rounded-none !overflow-y-auto"
+      content-class="custom-dialog-content"
+      class="custom-dialog-container !min-h-screen !w-screen lg:!h-[90vh] lg:!w-[60vw]"
     >
       <TestimonyForm
         @submit="handleSubmit"
@@ -31,6 +32,7 @@ import Dialog from "primevue/dialog";
 import TestimonyForm from "./TestimonyForm.vue";
 import { useTestimonyService } from "@/composables/Testimony/useTestimonyService";
 import { useToastStorage } from "@/stores/ToasterStorage";
+
 const { notify } = useToastStorage();
 
 const isModalOpen = ref(false);
@@ -65,3 +67,15 @@ const handleSubmit = async (testimonyData) => {
   }
 };
 </script>
+
+<style scoped>
+.custom-dialog-container {
+  @apply !w-screen !h-screen !m-0 !rounded-none !overflow-y-auto;
+  @apply lg:!w-[50vw] lg:!h-[90vh] lg:!rounded-lg;
+}
+
+.custom-dialog-content {
+  @apply !bg-[#6f2465]/10 !h-full !rounded-none;
+  @apply lg:!rounded-lg;
+}
+</style>
