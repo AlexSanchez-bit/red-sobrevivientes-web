@@ -114,7 +114,7 @@ export abstract class ListerService<T> {
 
   public async getCount(
     filters: Filter<any>[],
-  ): Promise<{ totalCount: number }> {
+  ): Promise<{ totalCount: number; error: any }> {
     let query = this.buildSelect();
 
     query = this.applyFilters(query, filters);
@@ -123,10 +123,10 @@ export abstract class ListerService<T> {
 
     if (error) {
       // this.notify.notify("error", "Ocurrio un error", error.message, 5000);
-      return { totalCount: 0 };
+      return { totalCount: 0, error };
     }
 
-    return { totalCount: count };
+    return { totalCount: count, error };
   }
 
   private applyFilters(query: any, filters: Filter<any>[]) {

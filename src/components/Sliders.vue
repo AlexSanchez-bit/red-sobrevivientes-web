@@ -148,7 +148,7 @@ const default_bp = {
     spaceBetween: 45,
   },
   2000: {
-    slidesPerView: 4.8,
+    slidesPerView: 4.3,
     spaceBetween: 45,
   },
 };

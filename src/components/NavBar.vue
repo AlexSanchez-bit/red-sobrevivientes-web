@@ -32,7 +32,7 @@
 
     <!-- Menú escritorio -->
     <div
-      class="flex-row gap-1 sm:gap-3 items-center w-full overflow-hidden transition-all duration-500 hidden md:flex mt-2"
+      class="flex-row gap-1 sm:gap-3 items-center w-full overflow-hidden transition-all duration-500 hidden md:flex mt-2 text-xs"
       :class="{
         'h-8 opacity-100': scrolled_ammount >= 0,
         'h-0 opacity-0': scrolled_ammount < 0 && scrolled > 50,

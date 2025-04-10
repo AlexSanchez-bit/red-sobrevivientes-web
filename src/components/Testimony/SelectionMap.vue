@@ -1,8 +1,8 @@
 <template>
-  <div class="w-full p-6">
-    <div class="map-container mx-auto max-w-2xl">
+  <div class="w-full p-2 mb-4">
+    <div class="map-container mx-auto">
       <AutoComplete
-        class="!w-full m-3 mx-auto max-w-2xl"
+        class="!w-full m-3 mx-auto"
         v-model="searchQuery"
         optionLabel="display_name"
         :suggestions="searchResults"

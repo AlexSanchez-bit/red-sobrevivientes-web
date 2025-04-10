@@ -110,7 +110,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, nextTick, watch, Ref } from "vue";
+import { ref, computed, onMounted, nextTick, watch } from "vue";
 import Button from "primevue/button";
 import OverlayBadge from "primevue/overlaybadge";
 import {

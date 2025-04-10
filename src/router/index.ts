@@ -23,16 +23,6 @@ const router = createRouter({
       ],
     },
     {
-      path: "/login",
-      name: "login",
-      component: () => import("@/pages/Auth/Login.vue"),
-    },
-    {
-      path: "/register",
-      name: "register",
-      component: () => import("@/pages/Auth/Register.vue"),
-    },
-    {
       path: "/:pathMatch(.*)*",
       name: "404",
       component: () => import("@/pages/404.vue"),

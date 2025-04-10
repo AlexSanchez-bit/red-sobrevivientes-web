@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleSubmit" class="space-y-6 overflow-y-auto">
+  <form @submit.prevent="handleSubmit" class="space-y-2 overflow-y-auto">
     <div>
       <label class="block text-gray-700 font-medium mb-2">Nombre</label>
       <InputText
@@ -34,6 +34,27 @@
           delay: 250,
         }"
         placeholder="Seleccionar"
+      />
+    </div>
+
+    <div>
+      <label class="block text-gray-700 font-medium mb-2">Género</label>
+      <Select
+        v-model="formData.gender"
+        :options="genders"
+        optionLabel="name"
+        optionValue="id"
+        class="w-full"
+        placeholder="Su Género"
+      />
+    </div>
+
+    <div>
+      <label class="block text-gray-700 font-medium mb-2">Edad</label>
+      <InputNumber
+        v-model="formData.age"
+        class="w-full"
+        placeholder="Su Edad"
       />
     </div>
 
@@ -87,6 +108,8 @@ import Select from "primevue/select";
 import Button from "primevue/button";
 import MapComponent from "./SelectionMap.vue";
 import { useLaicTypeService } from "@/composables/LaicTypes/useLaicTypesService";
+import { Gender } from "@/services/Testimony/Testimony.service";
+import { InputNumber } from "primevue";
 
 const service = useLaicTypeService();
 
@@ -153,6 +176,11 @@ const onLazyLoad = (event) => {
     }
   }, 400);
 };
+
+const genders = Object.keys(Gender).map((key) => ({
+  id: key,
+  name: Gender[key],
+}));
 </script>
 
 <style>
