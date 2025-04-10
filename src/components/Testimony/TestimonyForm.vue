@@ -71,7 +71,7 @@
         type="submit"
         label="Enviar testimonio"
         :loading="loading"
-        class="bg-[#6f2465] hover:bg-[#5a1d50] text-white"
+        class="!bg-[#6f2465] hover:!bg-[#5a1d50] text-white"
         :disabled="!isFormValid"
       />
     </div>

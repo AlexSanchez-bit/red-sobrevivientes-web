@@ -3,14 +3,17 @@
     <Button
       label="Comparte tu historia"
       @click="openModal"
-      class="!bg-[#6f2465] hover:!bg-[#5a1d50] text-white font-bold py-3 px-6 rounded-full transition-all"
+      class="!bg-[#6f2465] hover:!bg-[#5a1d50] text-white font-bold py-3 !px-6 !text-xl !rounded-full transition-all"
     />
 
     <Dialog
       v-model:visible="isModalOpen"
       header="Comparte tu testimonio"
-      :modal="false"
-      class="!overflow-y-auto !w-screen !h-screen lg:!w-[50dvw] lg:!h-[99dvh]"
+      :modal="true"
+      maximizable
+      mask-class="!bg-[#6f2465]/10"
+      content-class="!bg-[#6f2465]/10 !h-full !rounded-none"
+      class="!w-screen !h-screen lg:!w-[50vw] lg:!h-[90vh] !m-0 !rounded-none !overflow-y-auto"
     >
       <TestimonyForm
         @submit="handleSubmit"
@@ -29,6 +32,7 @@ import TestimonyForm from "./TestimonyForm.vue";
 import { useTestimonyService } from "@/composables/Testimony/useTestimonyService";
 import { useToastStorage } from "@/stores/ToasterStorage";
 const { notify } = useToastStorage();
+
 const isModalOpen = ref(false);
 const isSubmitting = ref(false);
 
@@ -50,11 +54,12 @@ const handleSubmit = async (testimonyData) => {
     if (error) {
       notify("error", "error", "Ocurrió un error, intenta de nuevo", 4000);
     } else {
-      notify("success", "", "Gracias por compartit tu historia", 4000);
+      notify("success", "", "Gracias por compartir tu historia", 4000);
     }
 
     closeModal();
   } catch (err) {
+    console.error(err);
   } finally {
     isSubmitting.value = false;
   }

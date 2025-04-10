@@ -105,34 +105,50 @@ const default_bp = {
     slidesPerView: 1,
     spaceBetween: 15,
   },
-  // Tablet pequeña (768px - 991px)
-  768: {
+  650: {
     slidesPerView: 1.2,
+    spaceBetween: 15,
+  },
+  // Tablet pequeña (768px - 991px)
+  700: {
+    slidesPerView: 1.4,
+    spaceBetween: 20,
+  },
+  800: {
+    slidesPerView: 1.7,
     spaceBetween: 20,
   },
   // Tablet grande (992px - 1199px)
   992: {
-    slidesPerView: 1.5,
+    slidesPerView: 2.2,
     spaceBetween: 25,
   },
   // Desktop pequeño (1200px - 1439px)
-  1200: {
+  1000: {
     slidesPerView: 2,
+    spaceBetween: 30,
+  },
+  1200: {
+    slidesPerView: 2.4,
     spaceBetween: 30,
   },
   // Desktop medio (1440px - 1679px)
   1440: {
-    slidesPerView: 2.3,
+    slidesPerView: 2.8,
     spaceBetween: 35,
   },
   // Desktop grande (1680px - 1919px)
   1680: {
-    slidesPerView: 2.8,
+    slidesPerView: 3.4,
     spaceBetween: 40,
   },
   // Pantallas extra grandes (1920px+)
   1920: {
-    slidesPerView: 3.2,
+    slidesPerView: 4,
+    spaceBetween: 45,
+  },
+  2000: {
+    slidesPerView: 4.8,
     spaceBetween: 45,
   },
 };

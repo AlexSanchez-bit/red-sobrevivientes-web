@@ -61,7 +61,7 @@ onMounted(() => {});
               v-html="data.text"
             ></h2>
             <div
-              class="absolute bottom-0 left-0 right-0 w-full h-full bg-gradient-to-t from-black/60 to-black/20 flex flex-col items-center justify-end pb-8 px-4 text-center"
+              class="absolute bottom-0 left-0 right-0 w-full h-full flex flex-col items-center justify-end pb-8 px-4 text-center"
             >
               <div class="max-w-3xl w-full space-y-4">
                 <a
