@@ -17,8 +17,8 @@
         />
       </router-link>
 
-      <h1 class="text-2xl font-bold text-center text-[#6f2456]">
-        Red de Sobrevivientes Colombia
+      <h1 class="text-sm lg:text-2xl font-bold text-center text-[#6f2456]">
+        Red de Sobrevivientes de abuso Sexual Colombia
       </h1>
 
       <!-- Botón menú hamburguesa solo en móviles -->

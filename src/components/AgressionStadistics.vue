@@ -3,7 +3,7 @@
     <!-- Selector -->
     <MainViewSwitch
       @selected="slectedTab = $event"
-      class="scale-150 my-8 mx-auto w-fit"
+      class="scale-110 md:scale-150 my-8 mx-auto w-fit"
     />
 
     <!-- Animación de transición -->

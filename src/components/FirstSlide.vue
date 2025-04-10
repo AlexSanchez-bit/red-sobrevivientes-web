@@ -57,7 +57,7 @@ onMounted(() => {});
               imageClass="object-cover z-10 w-full h-[40dvh] md:h-[75dvh] transition-transform duration-300 group-hover:scale-105"
             />
             <h2
-              class="text-3xl w-full absolute top-2 text-center md:text-4xl font-bold text-white mb-2 z-20"
+              class="text-2xl w-full absolute top-2 text-center md:text-4xl font-bold text-white mb-2 z-20"
               v-html="data.text"
             ></h2>
             <div
