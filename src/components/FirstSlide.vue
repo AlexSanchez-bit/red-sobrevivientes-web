@@ -8,12 +8,12 @@ import { onMounted, ref } from "vue";
 
 const service = usePromotionService();
 
-const promotions = ref<IPromotion[]>([]);
+const promotions = ref<Partial<IPromotion>[]>([{ image: "full.jpeg" }]);
 
 import { FilterMatchMode } from "@primevue/core/api";
 
 onMounted(async () => {
-  promotions.value = await service.getAll(
+  const data = await service.getAll(
     [
       {
         field: "start_date",
@@ -29,14 +29,18 @@ onMounted(async () => {
       },
     ],
   );
+
+  if (data) {
+    promotions.value = [promotions.value[0], ...data];
+  }
 });
 
 onMounted(() => {});
 </script>
 
 <template>
-  <div class="relative w-full h-[75dvh]" id="main">
-    <div class="absolute z-10 overflow-hidden w-full h-[70dvh]">
+  <div class="relative w-full h-[40dvh] md:h-[75dvh]" id="main">
+    <div class="absolute z-10 overflow-hidden w-full h-[40dvh] md:h-[75dvh]">
       <Carousel
         v-if="promotions.length > 0"
         :value="promotions"
@@ -50,18 +54,16 @@ onMounted(() => {});
           <div class="w-full relative group">
             <Img
               :src="data.image"
-              imageClass="object-cover z-10 w-full h-[70dvh] transition-transform duration-300 group-hover:scale-105"
+              imageClass="object-cover z-10 w-full h-[40dvh] md:h-[75dvh] transition-transform duration-300 group-hover:scale-105"
             />
+            <h2
+              class="text-3xl w-full absolute top-2 text-center md:text-4xl font-bold text-white mb-2 z-20"
+              v-html="data.text"
+            ></h2>
             <div
-              class="absolute bottom-0 left-0 right-0 w-full h-full bg-gradient-to-t from-black/80 to-black/40 flex flex-col items-center justify-end pb-8 px-4 text-center"
+              class="absolute bottom-0 left-0 right-0 w-full h-full bg-gradient-to-t from-black/60 to-black/20 flex flex-col items-center justify-end pb-8 px-4 text-center"
             >
               <div class="max-w-3xl w-full space-y-4">
-                <!-- Título principal -->
-                <h2
-                  class="text-3xl md:text-4xl font-bold text-white mb-2 drop-shadow-lg"
-                  v-html="data.text"
-                ></h2>
-
                 <a
                   v-if="data.redirection_url && data.redirection_text"
                   :href="data.redirection_url"

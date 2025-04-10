@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-yellow-50 text-black py-3 px-2 lg:p-6 text-md">
+  <footer class="bg-primary/80 text-white py-3 px-2 lg:p-6 text-md">
     <div
       class="container mx-auto flex flex-col gap-1 md:flex-row justify-between items-center"
     >
@@ -19,12 +19,12 @@
           <Button
             icon="pi pi-facebook"
             size="normal"
-            class="p-button-rounded p-button-secondary !bg-transparent hover-animation"
+            class="p-button-rounded p-button-secondary !bg-transparent hover-animation !border-none !text-white"
             aria-label="Facebook"
           />
           <Button
             icon="pi pi-instagram"
-            class="p-button-rounded p-button-secondary !bg-transparent hover-animation"
+            class="p-button-rounded p-button-secondary !bg-transparent hover-animation !border-none !text-white"
             aria-label="Instagram"
           />
         </div>

@@ -15,6 +15,7 @@ export default {
         cyan: "var(--secondary-color-cyan)",
       },
       colors: {
+        primary: "#6f2465",
         coreanblue: "#449ca8",
         brick: "var(--primary-color-brick)",
         sea: "var(--primary-color-sea)",

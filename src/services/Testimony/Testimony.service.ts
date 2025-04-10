@@ -22,7 +22,7 @@ export class TestimonyService extends ListerService<ITestimony> {
   async getStadistics() {
     return await supabase
       .from("laic_type")
-      .select("name,testimony(*)")
+      .select("name,image,testimony(*)")
       .eq("testimony.status", "ACCEPTED");
   }
 }

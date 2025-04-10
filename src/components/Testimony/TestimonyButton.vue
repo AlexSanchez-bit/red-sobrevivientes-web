@@ -9,9 +9,8 @@
     <Dialog
       v-model:visible="isModalOpen"
       header="Comparte tu testimonio"
-      :style="{ width: '90vw', maxWidth: '800px' }"
-      :modal="true"
-      class="!overflow-y-auto"
+      :modal="false"
+      class="!overflow-y-auto !w-screen !h-screen lg:!w-[50dvw] lg:!h-[99dvh]"
     >
       <TestimonyForm
         @submit="handleSubmit"

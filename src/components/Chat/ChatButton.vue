@@ -200,17 +200,19 @@ async function sendMessage() {
   newMessage.value = "";
 
   unanswered.value = true;
-  const { data, error } = await service.sendMessage(lastmsg);
+  scrollDown();
+  const { data: resp, error } = await service.sendMessage(lastmsg);
+  const { data, error: operation_error } = resp;
+  if (error || operation_error) {
+    messages.value[messageIndex].status = MessageStatus.ERROR;
+    unanswered.value = false;
+    return;
+  }
+
   if (data.human_driven) {
     unanswered.value = false;
   }
-  if (error) {
-    messages.value[messageIndex].status = MessageStatus.ERROR;
-    unanswered.value = false;
-  }
   messages.value[messageIndex].status = MessageStatus.SENT;
-
-  scrollDown();
 }
 
 function autoResize() {

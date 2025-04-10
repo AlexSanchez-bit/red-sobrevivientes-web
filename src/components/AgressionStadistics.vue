@@ -1,44 +1,74 @@
 <template>
   <div class="grid">
-    <!-- Sección del Mapa -->
-    <div class="col-12 md:col-8">
-      <MapContainer
-        :markers="testimony"
-        class="h-full shadow-3 border-round z-10"
-      />
-    </div>
+    <!-- Selector -->
+    <MainViewSwitch
+      @selected="slectedTab = $event"
+      class="scale-150 my-8 mx-auto w-fit"
+    />
 
-    <!-- Sección de Estadísticas Mejorada -->
-    <div class="col-12 md:col-4 p-4">
-      <div class="flex flex-col gap-4">
-        <!-- Encabezado -->
-        <div class="text-center mb-4">
-          <h1 class="text-3xl font-bold mb-2" style="color: #6f2465">
-            Estadísticas Actualizadas
-          </h1>
-          <p class="text-gray-600">Datos actualizados de testimonios</p>
-        </div>
+    <!-- Animación de transición -->
+    <Transition name="fade-slide" mode="out-in">
+      <!-- Modo Explora -->
+      <div
+        v-if="slectedTab === 'explora'"
+        key="explora"
+        class="col-12 md:col-8"
+      >
+        <MapContainer
+          :markers="testimony"
+          class="h-full shadow-3 border-round z-10"
+        />
+      </div>
 
-        <!-- Tarjetas de Resumen -->
-        <ul class="list-none text-start max-w-2xl mx-auto">
-          <li v-for="(item, index) in testimony_data" :key="index">
-            <p>
-              <b>{{ item.name }}</b
-              >: {{ item.count }}
+      <!-- Modo Descubre -->
+      <div
+        v-else
+        key="descubre"
+        class="col-12 md:col-4 p-4 fade-slide-enter-active"
+      >
+        <div class="flex flex-col gap-5">
+          <!-- Encabezado -->
+          <div class="text-center">
+            <h1 class="text-3xl font-bold mb-2 text-[#6f2465]">
+              Estadísticas Actualizadas
+            </h1>
+            <p class="text-gray-600">
+              Datos actualizados de testimonios aceptados
             </p>
-          </li>
-        </ul>
+          </div>
 
-        <div>
+          <!-- Tarjetas Resumen -->
+          <div class="grid grid-cols-2 gap-4 text-center max-w-md mx-auto">
+            <div
+              v-for="(item, index) in testimony_data"
+              :key="index"
+              class="bg-purple-100 text-purple-800 py-4 px-2 rounded-xl shadow-md"
+            >
+              <p class="font-bold text-lg">{{ item.count }}</p>
+              <p class="text-sm">{{ item.name }}</p>
+            </div>
+          </div>
+
+          <!-- Promedio -->
+          <div class="text-center mt-2 text-gray-700">
+            <p>
+              Promedio por categoría:
+              <span class="font-semibold text-[#6f2465]">
+                {{ averagePerCategory }}
+              </span>
+            </p>
+          </div>
+
+          <!-- Gráfico -->
           <Chart
             type="bar"
             :data="chartData"
             :options="chartOptions"
-            class="!mx-auto max-w-2xl"
+            class="max-w-2xl mx-auto"
           />
         </div>
       </div>
-    </div>
+    </Transition>
   </div>
 </template>
 
@@ -47,15 +77,15 @@ import { onMounted, ref, computed } from "vue";
 import Chart from "primevue/chart";
 import MapContainer from "@/components/MapContainer.vue";
 import { useTestimonyService } from "@/composables/Testimony/useTestimonyService";
+import MainViewSwitch from "@/components/MainViewSwitch.vue";
 
 const service = useTestimonyService();
+const slectedTab = ref("explora");
 
-// Datos reactivos
 const testimony_data = ref([]);
 const testimony = ref([]);
 const total_testimonies = ref(0);
 
-// Configuración del gráfico
 const chartData = ref({
   labels: [],
   datasets: [
@@ -81,7 +111,6 @@ const chartOptions = ref({
   },
 });
 
-// Calculados
 const averagePerCategory = computed(() => {
   return testimony_data.value.length > 0
     ? (total_testimonies.value / testimony_data.value.length).toFixed(1)
@@ -111,7 +140,6 @@ const loadData = async () => {
       count: val.testimony.length,
     }));
 
-    // Actualizar gráfico
     chartData.value = {
       labels: testimony_data.value.map((item) => item.name),
       datasets: [
@@ -122,9 +150,15 @@ const loadData = async () => {
       ],
     };
 
-    // Procesar datos para el mapa
     testimony.value = data
-      .map((el) => el.testimony)
+      .map((el) => {
+        return el.testimony.map((pos) => {
+          return {
+            ...pos,
+            category: { name: el.name, icon: el.image },
+          };
+        });
+      })
       .flat()
       .map((pos) => ({
         position: [pos.location.lat, pos.location.lng],
@@ -139,13 +173,23 @@ const loadData = async () => {
 </script>
 
 <style scoped>
-/* Estilos personalizados */
+/* Animaciones */
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+  transition: all 0.4s ease;
+}
+.fade-slide-enter-from {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.fade-slide-leave-to {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+/* Gráfico */
 :deep(.p-chart) {
   border-radius: 12px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
-:deep(.pi) {
-  vertical-align: text-bottom;
 }
 </style>
