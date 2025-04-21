@@ -6,7 +6,7 @@
       <!-- Marca / Información -->
       <div class="text-center md:text-left md:max-w-sm">
         <h3 class="text-lg lg:text-xl font-bold hover-animation">
-          Red de Sobrevivientes de abuso Sexual Colombia
+          Red de Sobrevivientes de abuso Sexual Clerical
         </h3>
         <p class="mt-1 text-xs text-white/90">
           Acompañando y visibilizando a quienes han sido víctimas de violencia
@@ -45,8 +45,8 @@
       <div class="text-center md:text-right md:max-w-xs">
         <h4 class="text-sm font-semibold mb-1 hover-animation">Contacto</h4>
         <p class="hover-animation">
-          <a href="https://wa.me/5350273412/" target="_blank">
-            Tel: +53 50272812
+          <a href="https://wa.me/573025834033/" target="_blank">
+            Tel: +57 3025834033
           </a>
         </p>
         <p class="hover-animation">

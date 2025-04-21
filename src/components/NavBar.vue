@@ -18,7 +18,7 @@
       </router-link>
 
       <h1 class="text-sm lg:text-2xl font-bold text-center text-[#6f2456]">
-        Red de Sobrevivientes de abuso Sexual Colombia
+        Red de Sobrevivientes de abuso Sexual Clerical
       </h1>
 
       <!-- Botón menú hamburguesa solo en móviles -->
@@ -143,7 +143,6 @@ onMounted(() => {
     if (Math.abs(scrolled.value - window.scrollY) >= 10) {
       scrolled_ammount.value = Math.round(scrolled.value - window.scrollY);
     }
-    scrolled.value = window.scrollY;
   });
 });
 

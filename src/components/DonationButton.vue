@@ -28,7 +28,6 @@ onMounted(() => {
         shape: "pill",
         label: "donate",
       },
-      // Monto fijo o dinámico
       createOrder: (data, actions) => {
         return actions.order.create({
           purchase_units: [

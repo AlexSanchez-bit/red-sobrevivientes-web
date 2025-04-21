@@ -2,7 +2,7 @@
   <div class="max-w-3xl mx-auto p-6">
     <!-- Primer segmento visible -->
     <section class="mb-4">
-      <h1 class="text-2xl text-center font-semibold text-primary">
+      <h1 class="text-2xl text-center font-semibold text-primary" id="about_us">
         Sobre Nosotros
       </h1>
       <p class="text-gray-700 mt-2">
