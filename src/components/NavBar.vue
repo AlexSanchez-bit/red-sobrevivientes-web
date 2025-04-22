@@ -13,12 +13,14 @@
       >
         <img
           src="/logo/logo.png"
-          class="h-12 sm:h-20 opacity-1 transition-all duration-200"
+          class="h-10 w-auto sm:h-20 opacity-1 transition-all duration-200"
         />
       </router-link>
 
-      <h1 class="text-sm lg:text-2xl font-bold text-center text-[#6f2456]">
-        Red de Sobrevivientes de abuso Sexual Clerical
+      <h1
+        class="text-xs sm:text-sm md:text-xl lg:text-2xl font-bold text-center text-[#6f2456]"
+      >
+        RED DE SOBREVIVIENTES DE ABUSO SEXUAL CLERICAL
       </h1>
 
       <!-- Botón menú hamburguesa solo en móviles -->
