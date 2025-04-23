@@ -1,7 +1,7 @@
 <template>
-  <div class="text-center py-6 border border-red-700/20 z-[999]">
+  <div class="text-center py-6">
     <Button
-      label="Comparte tu historia"
+      label="Sí, soy Sobreviviente."
       @click="openModal"
       class="!bg-[#6f2465] hover:!bg-[#5a1d50] text-white font-bold py-3 !px-6 !text-xl !rounded-full transition-all"
     />
@@ -66,6 +66,10 @@ const handleSubmit = async (testimonyData) => {
     isSubmitting.value = false;
   }
 };
+
+defineExpose({
+  openModal,
+});
 </script>
 
 <style scoped>

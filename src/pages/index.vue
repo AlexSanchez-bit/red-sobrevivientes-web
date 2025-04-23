@@ -1,10 +1,22 @@
 <template>
   <div class="min-h-screen pb-5">
     <FirstSlide />
-    <div id="stadistics">
-      <AgressionStadistics />
+
+    <h2 class="text-xl text-center my-3">
+      ¿Eres Sobreviviente de Abuso Sexual Clerical?
+    </h2>
+    <div class="flex flex-row gap-3 w-full justify-center items-center">
+      <TestimonyButton id="share_your_story" />
+
+      <router-link to="/us">
+        <Button
+          label="No, pero quiero información."
+          class="!border-[#6f2465] hover:!shadow-md !bg-transparent !text-[#6f2465] border hover:!border-[#5a1d50] font-bold !py-2 !px-6 !text-xl !rounded-full transition-all"
+        />
+      </router-link>
     </div>
-    <AboutUs id="about_us" />
+
+    <ClericalAdvise />
     <div id="blog">
       <Sliders class="my-3" :service="service" :filters="[]" :orders="[]">
         <template #header>
@@ -23,22 +35,17 @@
         </template>
       </Sliders>
     </div>
-
-    <TestimonyButton id="share_your_story" />
-    <DonationButton id="#donate" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import AboutUs from "@/components/AboutUs.vue";
-import Card from "primevue/card";
-import AgressionStadistics from "@/components/AgressionStadistics.vue";
 import FirstSlide from "@/components/FirstSlide.vue";
 import TestimonyButton from "@/components/Testimony/TestimonyButton.vue";
 import Sliders from "@/components/Sliders.vue";
 import { useBlogService } from "@/composables/Blog/useBlogService";
 import BlogCarouselItem from "@/components/BlogCarouselItem.vue";
-import DonationButton from "@/components/DonationButton.vue";
+import Button from "primevue/button";
+import ClericalAdvise from "@/components/SexualIssues/ClericalAdvise.vue";
 
 const service = useBlogService();
 </script>

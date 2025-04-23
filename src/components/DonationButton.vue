@@ -1,5 +1,5 @@
 <template>
-  <div class="paypal-donate !z-20">
+  <div class="paypal-donate !z-20" id="donate">
     <h2 class="text-xl font-bold mb-4 text-center">
       Apóyanos con una donación
     </h2>

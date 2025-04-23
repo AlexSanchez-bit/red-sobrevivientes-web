@@ -3,7 +3,7 @@ import { useSplashStore } from "@/stores/SplashScreen";
 import DefaultLayout from "@/layouts/default.vue";
 
 const router = createRouter({
-  history: createWebHistory(""),
+  history: createWebHistory("#"),
   routes: [
     {
       path: "/",
@@ -14,6 +14,16 @@ const router = createRouter({
           path: "",
           name: "home-view",
           component: () => import("@/pages/index.vue"),
+        },
+        {
+          path: "/us",
+          name: "about-us",
+          component: () => import("@/components/AboutUs.vue"),
+        },
+        {
+          path: "/map",
+          name: "map",
+          component: () => import("@/components/AgressionStadistics.vue"),
         },
         {
           path: "/blog/:id",

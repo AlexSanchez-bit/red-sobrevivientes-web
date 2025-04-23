@@ -1,4 +1,5 @@
 <template>
+  <DonationButton />
   <footer class="bg-primary/80 text-white py-4 px-2 lg:py-6 text-sm lg:text-md">
     <div class="container mx-auto grid lg:grid-cols-3 gap-4 grid-cols-1">
       <!-- Marca / Información -->
@@ -7,7 +8,7 @@
           RED DE SOBREVIVIENTES DE ABUSO SEXUAL CLERICAL
         </h3>
         <p class="mt-1 text-sm text-white/90">
-          DENUNCIA A LA IGLESIA NO EN LA IGLESIA
+          ¡DENUNCIA A LA IGLESIA, NO EN LA IGLESIA!
         </p>
       </div>
 
@@ -48,8 +49,8 @@
           </a>
         </p>
         <p class="hover-animation">
-          <a href="mailto:correo@direccion.com">
-            Correo: correo@direccion.com
+          <a href="mailto:redsobrevivientescol@protonmail.com">
+            Correo: redsobrevivientescol@protonmail.com
           </a>
         </p>
       </div>
@@ -59,6 +60,7 @@
 
 <script setup>
 import Button from "primevue/button";
+import DonationButton from "@/components/DonationButton.vue";
 </script>
 
 <style scoped>

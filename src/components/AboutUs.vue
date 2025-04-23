@@ -325,7 +325,7 @@
     </transition>
 
     <!-- Botón Mostrar más / menos -->
-    <div class="mt-6 text-center">
+    <div class="mt-6 text-center hidden">
       <button
         @click="expanded = !expanded"
         class="bg-primary text-white px-6 py-2 rounded-full transition-all duration-300 hover:bg-primary/70 border-0"
@@ -338,7 +338,7 @@
 
 <script setup>
 import { ref } from "vue";
-const expanded = ref(false);
+const expanded = ref(true);
 </script>
 
 <style scoped>
