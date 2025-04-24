@@ -11,7 +11,7 @@
       <router-link to="/us">
         <Button
           label="No, pero quiero información."
-          class="!border-[#6f2465] hover:!shadow-md !bg-transparent !text-[#6f2465] border hover:!border-[#5a1d50] font-bold !py-2 !px-6 !text-xl !rounded-full transition-all"
+          class="!border-[#6f2465] hover:!shadow-md !bg-transparent !text-[#6f2465] border hover:!border-[#5a1d50] font-bold !py-2 !px-6 !rounded-full transition-all !text-sm lg:!text-xl"
         />
       </router-link>
     </div>

@@ -39,8 +39,8 @@ onMounted(() => {});
 </script>
 
 <template>
-  <div class="relative w-full h-[40dvh] lg:h-[75dvh]" id="main">
-    <div class="absolute z-10 overflow-hidden w-full h-[40dvh] lg:h-[75dvh]">
+  <div class="relative w-full h-[35dvh] lg:h-[75dvh]" id="main">
+    <div class="absolute z-10 overflow-hidden w-full h-[35dvh] lg:h-[75dvh]">
       <Carousel
         v-if="promotions.length > 0"
         :value="promotions"
@@ -54,11 +54,11 @@ onMounted(() => {});
           <div class="w-full relative group object-contain bg-primary/60">
             <Img
               :src="data.image"
-              imageClass=" absolute blur opacity-30 object-cover  w-full h-[40dvh] lg:h-[75dvh] transition-transform duration-300 "
+              imageClass=" absolute blur opacity-30 object-cover  w-full h-[35dvh] lg:h-[75dvh] transition-transform duration-300 "
             />
             <Img
               :src="data.image"
-              imageClass=" mx-auto z-10 w-auto h-[40dvh] lg:h-[75dvh] transition-transform duration-300 group-hover:scale-105"
+              imageClass="object-cover md:object-contain mx-auto z-10 w-auto h-[35dvh] lg:h-[75dvh] transition-transform duration-300 group-hover:scale-105"
             />
             <h2
               class="text-2xl w-full absolute top-2 text-center md:text-4xl font-bold text-white mb-2 z-20"

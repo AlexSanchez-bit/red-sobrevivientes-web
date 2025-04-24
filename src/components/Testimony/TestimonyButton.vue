@@ -3,7 +3,7 @@
     <Button
       label="Sí, soy Sobreviviente."
       @click="openModal"
-      class="!bg-[#6f2465] hover:!bg-[#5a1d50] text-white font-bold py-3 !px-6 !text-xl !rounded-full transition-all"
+      class="!bg-[#6f2465] hover:!bg-[#5a1d50] text-white font-bold py-2 !px-6 !text-sm lg:!text-xl !rounded-full transition-all"
     />
 
     <Dialog
@@ -14,7 +14,7 @@
       dismissableMask
       mask-class="!bg-[#6f2465]/10"
       content-class="custom-dialog-content"
-      class="custom-dialog-container !min-h-screen !w-screen lg:!h-[90vh] lg:!w-[60vw]"
+      class="custom-dialog-container !w-screen lg:!h-[90vh] lg:!w-[60vw]"
     >
       <TestimonyForm
         @submit="handleSubmit"
