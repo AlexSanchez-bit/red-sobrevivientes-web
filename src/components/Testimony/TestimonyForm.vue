@@ -177,9 +177,10 @@ const onLazyLoad = (event) => {
   }, 400);
 };
 
+const { t } = useI18n();
 const genders = Object.keys(Gender).map((key) => ({
   id: key,
-  name: Gender[key],
+  name: t(Gender[key]),
 }));
 </script>
 

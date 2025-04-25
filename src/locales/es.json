@@ -135,5 +135,8 @@
   "requested_change": "Cambio solicitado",
   "all_rights_reserved": "Todos los derechos reservados",
   "concerns": "Preocupaciones",
-  "monthly_gifts": "Regalos del mes"
+  "monthly_gifts": "Regalos del mes",
+  "MALE": "Masculino",
+  "FEMALE": "Femenino",
+  "OTHER": "otro"
 }
