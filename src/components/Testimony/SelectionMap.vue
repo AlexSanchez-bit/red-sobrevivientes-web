@@ -1,6 +1,6 @@
 <template>
   <div class="w-full p-2 mb-4">
-    <div class="map-container mx-auto">
+    <div class="mx-auto">
       <AutoComplete
         class="!w-full m-3 mx-auto"
         v-model="searchQuery"
@@ -10,61 +10,65 @@
       >
         <template #option="slotProps">
           <div
-            class="flex items-center"
+            class="max-w-[80dvw] h-fit"
             @click="selectLocation(slotProps.option)"
           >
-            <div>{{ slotProps.option.display_name }}</div>
+            <p class="text-sm line-clamp-2 h-fit">
+              {{ slotProps.option.display_name }}
+            </p>
           </div>
         </template>
       </AutoComplete>
-      <l-map
-        ref="map"
-        :zoom="zoom"
-        :center="center"
-        :options="{ attributionControl: false }"
-        @ready="onMapReady"
-        @click="handleMapClick"
-      >
-        <l-tile-layer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          layer-type="base"
-          name="OpenStreetMap"
-          :attribution="attribution"
-        />
-
-        <!-- Marcadores existentes -->
-        <l-marker
-          v-for="(marker, index) in markers"
-          :key="`existing-${index}`"
-          :lat-lng="marker.position"
+      <div class="map-container mx-auto">
+        <l-map
+          ref="map"
+          :zoom="zoom"
+          :center="center"
+          :options="{ attributionControl: false }"
+          @ready="onMapReady"
+          @click="handleMapClick"
         >
-          <l-popup>
-            <div class="marker-popup">
-              <h3 class="font-bold">{{ marker.title }}</h3>
-              <p class="text-sm">{{ marker.description }}</p>
-            </div>
-          </l-popup>
-        </l-marker>
+          <l-tile-layer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            layer-type="base"
+            name="OpenStreetMap"
+            :attribution="attribution"
+          />
 
-        <!-- Marcador seleccionado -->
-        <l-marker
-          v-if="selectedPosition"
-          :lat-lng="selectedPosition"
-          :icon="selectedIcon"
-        >
-          <l-popup>
-            <div class="p-2">
-              <p class="font-semibold">Ubicación seleccionada:</p>
-              <button
-                @click="clearSelection"
-                class="mt-2 px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-xs"
-              >
-                Eliminar selección
-              </button>
-            </div>
-          </l-popup>
-        </l-marker>
-      </l-map>
+          <!-- Marcadores existentes -->
+          <l-marker
+            v-for="(marker, index) in markers"
+            :key="`existing-${index}`"
+            :lat-lng="marker.position"
+          >
+            <l-popup>
+              <div class="marker-popup">
+                <h3 class="font-bold">{{ marker.title }}</h3>
+                <p class="text-sm">{{ marker.description }}</p>
+              </div>
+            </l-popup>
+          </l-marker>
+
+          <!-- Marcador seleccionado -->
+          <l-marker
+            v-if="selectedPosition"
+            :lat-lng="selectedPosition"
+            :icon="selectedIcon"
+          >
+            <l-popup>
+              <div class="p-2">
+                <p class="font-semibold">Ubicación seleccionada:</p>
+                <button
+                  @click="clearSelection"
+                  class="mt-2 px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-xs"
+                >
+                  Eliminar selección
+                </button>
+              </div>
+            </l-popup>
+          </l-marker>
+        </l-map>
+      </div>
     </div>
   </div>
 </template>
