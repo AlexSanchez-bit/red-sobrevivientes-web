@@ -110,6 +110,7 @@ import MapComponent from "./SelectionMap.vue";
 import { useLaicTypeService } from "@/composables/LaicTypes/useLaicTypesService";
 import { Gender } from "@/services/Testimony/Testimony.service";
 import { InputNumber } from "primevue";
+import { useI18n } from "vue-i18n";
 
 const service = useLaicTypeService();
 
