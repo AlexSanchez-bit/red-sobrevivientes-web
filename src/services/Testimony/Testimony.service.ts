@@ -24,7 +24,7 @@ export class TestimonyService extends ListerService<ITestimony> {
   }
 
   async create(data: ITestimony) {
-    return await supabase.from("testimony").insert(data).select();
+    return await supabase.from("testimony").insert(data);
   }
 
   async getStadistics() {

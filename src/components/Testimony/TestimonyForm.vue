@@ -120,6 +120,7 @@ const props = defineProps(["loading"]);
 const formData = reactive({
   name: "",
   laic_involved: null,
+  status: "CREATED",
   location: null,
   text: "",
 });
