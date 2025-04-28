@@ -22,7 +22,7 @@
           <img
             :src="item.picture"
             alt="Foto de {{ item.name }}"
-            class="w-64 h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
           <!-- Overlay: siempre visible en móvil, solo en hover en escritorio -->
           <div
