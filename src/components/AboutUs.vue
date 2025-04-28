@@ -1,6 +1,8 @@
 <template>
   <div class="max-w-3xl mx-auto p-6">
     <!-- Primer segmento visible -->
+
+    <StaffMembers />
     <section class="mb-4">
       <h1 class="text-2xl text-center font-semibold text-primary" id="about_us">
         Sobre Nosotros
@@ -71,6 +73,7 @@
 
 <script setup>
 import { ref } from "vue";
+import StaffMembers from "./StaffMembers.vue";
 const expanded = ref(true);
 </script>
 
