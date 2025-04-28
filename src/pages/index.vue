@@ -17,7 +17,10 @@
     </div>
 
     <ClericalAdvise />
-    <div id="blog">
+    <Alies />
+
+    <div id="blog" class="-translate-y-96"></div>
+    <div>
       <Sliders class="my-3" :service="service" :filters="[]" :orders="[]">
         <template #header>
           <h6
@@ -46,6 +49,7 @@ import { useBlogService } from "@/composables/Blog/useBlogService";
 import BlogCarouselItem from "@/components/BlogCarouselItem.vue";
 import Button from "primevue/button";
 import ClericalAdvise from "@/components/SexualIssues/ClericalAdvise.vue";
+import Alies from "@/components/Alies.vue";
 
 const service = useBlogService();
 </script>

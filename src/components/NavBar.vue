@@ -48,6 +48,19 @@
       >
         Sobre nosotros
       </router-link>
+      <router-link
+        to="/us"
+        class="hover:bg-gray-50/20 hover:text-zinc-950/40 text-black p-2 rounded-sm cursor-pointer lg:text-md uppercase"
+      >
+        Miembros
+      </router-link>
+
+      <span
+        class="hover:bg-gray-50/20 hover:text-zinc-950/40 text-black p-2 rounded-sm cursor-pointer lg:text-md uppercase"
+        @click="scrollToSection('alies')"
+      >
+        Nuestros Aliados
+      </span>
       <span
         class="hover:bg-gray-50/20 hover:text-zinc-950/40 text-black p-2 rounded-sm cursor-pointer lg:text-md uppercase"
         @click="$refs.testimonybutton.openModal()"
@@ -89,6 +102,20 @@
       >
         Sobre nosotros
       </router-link>
+
+      <router-link
+        to="/us"
+        class="uppercase font-semibold hover:underline cursor-pointer"
+      >
+        Miembros
+      </router-link>
+      <span
+        class="uppercase font-semibold hover:underline cursor-pointer"
+        @click="scrollToSection('alies')"
+      >
+        Nuestros Aliados
+      </span>
+
       <span
         class="uppercase font-semibold hover:underline cursor-pointer"
         @click="$refs.testimonybutton.openModal()"
