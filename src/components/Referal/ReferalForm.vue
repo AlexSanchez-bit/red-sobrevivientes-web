@@ -11,7 +11,7 @@
     </div>
 
     <div>
-      <label class="block text-gray-700 font-medium mb-2">Teléfono *</label>
+      <label class="block text-gray-700 font-medium mb-2">Teléfono</label>
       <InputText v-model="formData.phone_number" class="w-full" placeholder="Número de contacto"
         :class="{ '!border-red-500': errors.phone_number }" />
       <small v-if="errors.phone_number" class="text-red-500">{{ errors.phone_number }}</small>
@@ -26,7 +26,7 @@
 
     <div class="flex justify-end gap-3">
       <Button label="Cancelar" severity="secondary" type="button" @click="$emit('cancel')" :disabled="loading" />
-      <Button label="Guardar Referido" type="submit" :loading="loading"
+      <Button label="Enviar Referido" type="submit" :loading="loading"
         class="!bg-[#6f2465] hover:!bg-[#5a1d50] text-white" :disabled="!isFormValid || loading" />
     </div>
   </form>
@@ -61,7 +61,7 @@ const errors = reactive({
 })
 
 const isFormValid = computed(() =>
-  formData.phone_number.trim() !== '' && formData.description.trim() !== ''
+  true
 )
 
 function validateForm() {

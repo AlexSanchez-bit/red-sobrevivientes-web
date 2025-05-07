@@ -42,7 +42,7 @@ import TestimonyForm from "./TestimonyForm.vue";
 import { useTestimonyService } from "@/composables/Testimony/useTestimonyService";
 import { useToastStorage } from "@/stores/ToasterStorage";
 import ReferalForm from "../Referal/ReferalForm.vue";
-const selected = ref('survivor')
+const selected = ref('no-survivor')
 
 const { notify } = useToastStorage();
 
