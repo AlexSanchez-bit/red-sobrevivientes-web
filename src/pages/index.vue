@@ -24,11 +24,16 @@
           <h6 class="text-4xl text-center mt-6 decoration-black text-black uppercase">
             Últimas Entradas
           </h6>
-          <p class="underline text-center mb-6 text-zinc-800 decoration-black mt-4 cursor-pointer uppercase"></p>
+          <router-link to="blog">
+            <p class="underline text-center mb-6 text-zinc-800 decoration-black mt-4 cursor-pointer uppercase">ver todas
+            </p>
+          </router-link>
         </template>
 
         <template #item="{ item }">
-          <BlogCarouselItem :item="item" />
+          <div class="sm:w-[25rem]">
+            <BlogCarouselItem :item="item" />
+          </div>
         </template>
       </Sliders>
     </div>

@@ -35,14 +35,13 @@
       </span>
       <span
         class="hover:bg-gray-50/20 hover:text-zinc-950/40 text-black p-2 rounded-sm cursor-pointer lg:text-md uppercase"
-        @click="$refs.testimonybutton.openModal()">
+        @click="($refs.testimonybutton as any).openModal()">
         Comparte tu historia
       </span>
-      <span
-        class="hover:bg-gray-50/20 hover:text-zinc-950/40 text-black p-2 rounded-sm cursor-pointer lg:text-md uppercase"
-        @click="scrollToSection('blog')">
+      <router-link to="/blog"
+        class="hover:bg-gray-50/20 hover:text-zinc-950/40 text-black p-2 rounded-sm cursor-pointer lg:text-md uppercase">
         Blog
-      </span>
+      </router-link>
 
       <router-link to="/map"
         class="hover:bg-gray-50/20 hover:text-zinc-950/40 text-black p-2 rounded-sm cursor-pointer lg:text-md uppercase">
@@ -69,12 +68,14 @@
         Nuestros Aliados
       </span>
 
-      <span class="uppercase font-semibold hover:underline cursor-pointer" @click="$refs.testimonybutton.openModal()">
+      <span class="uppercase font-semibold hover:underline cursor-pointer"
+        @click="($refs.testimonybutton as any).openModal()">
         Comparte tu historia
       </span>
-      <span class="uppercase font-semibold hover:underline cursor-pointer" @click="scrollToSection('blog')">
+
+      <router-link to="/blog" class="uppercase font-semibold hover:underline cursor-pointer">
         Blog
-      </span>
+      </router-link>
 
       <router-link to="/map" class="uppercase font-semibold hover:underline cursor-pointer">
         Estadísticas y mapa

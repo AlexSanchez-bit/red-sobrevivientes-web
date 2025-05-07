@@ -26,9 +26,16 @@ const router = createRouter({
           component: () => import("@/components/AgressionStadistics.vue"),
         },
         {
-          path: "/blog/:id",
+          path: "/blog",
           name: "blog",
+          component: () => import("@/pages/blog/index.vue"),
+
+        },
+        {
+          path: "/blog/:id",
+          name: "blog-entrie-view",
           component: () => import("@/pages/blog/[id].vue"),
+
         },
       ],
     },

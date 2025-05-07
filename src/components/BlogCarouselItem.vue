@@ -1,18 +1,11 @@
 <template>
-  <Card
-    class="w-full sm:w-[25rem] hover:shadow-xl transition-all duration-300 cursor-pointer border-round-lg overflow-hidden"
-  >
+  <Card class="w-full  hover:shadow-xl transition-all duration-300 cursor-pointer border-round-lg overflow-hidden">
     <template #header>
       <router-link :to="`/blog/${item.id}`">
         <div class="relative h-48 overflow-hidden">
-          <img
-            alt="blog header"
-            :src="item.image ?? '/noimage.png'"
-            class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-          />
-          <div
-            class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 px-4 py-3"
-          >
+          <img alt="blog header" :src="item.image ?? '/noimage.png'"
+            class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 px-4 py-3">
             <h2 class="text-white font-bold text-xl mb-1 line-clamp-1">
               {{ item.title }}
             </h2>
@@ -29,10 +22,7 @@
     </template>
 
     <template #content>
-      <div
-        class="prose prose-sm max-w-none text-gray-600 line-clamp-3"
-        v-html="item.text"
-      ></div>
+      <div class="prose prose-sm max-w-none text-gray-600 line-clamp-3" v-html="item.text"></div>
     </template>
   </Card>
 </template>
