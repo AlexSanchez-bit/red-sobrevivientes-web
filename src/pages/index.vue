@@ -9,28 +9,22 @@
       <TestimonyButton id="share_your_story" />
 
       <router-link to="/us">
-        <Button
-          label="No, pero quiero información."
-          class="!border-[#6f2465] hover:!shadow-md !bg-transparent !text-[#6f2465] border hover:!border-[#5a1d50] font-bold !py-2 !px-6 !rounded-full transition-all !text-sm lg:!text-xl"
-        />
+        <Button label="No, pero quiero información."
+          class="!border-[#6f2465] hover:!shadow-md !bg-transparent !text-[#6f2465] border hover:!border-[#5a1d50] font-bold !py-2 !px-6 !rounded-full transition-all !text-sm lg:!text-xl" />
       </router-link>
     </div>
 
-    <ClericalAdvise />
+    <!-- <ClericalAdvise /> -->
     <Alies />
 
     <div id="blog" class="-translate-y-96"></div>
     <div>
       <Sliders class="my-3" :service="service" :filters="[]" :orders="[]">
         <template #header>
-          <h6
-            class="text-4xl text-center mt-6 decoration-black text-black uppercase"
-          >
+          <h6 class="text-4xl text-center mt-6 decoration-black text-black uppercase">
             Últimas Entradas
           </h6>
-          <p
-            class="underline text-center mb-6 text-zinc-800 decoration-black mt-4 cursor-pointer uppercase"
-          ></p>
+          <p class="underline text-center mb-6 text-zinc-800 decoration-black mt-4 cursor-pointer uppercase"></p>
         </template>
 
         <template #item="{ item }">
