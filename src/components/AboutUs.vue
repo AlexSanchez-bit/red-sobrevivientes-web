@@ -2,7 +2,7 @@
   <div class="max-w-3xl mx-auto p-6">
     <!-- Primer segmento visible -->
 
-    <StaffMembers />
+    <Policy />
     <section class="mb-4">
       <h1 class="text-2xl text-center font-semibold text-primary" id="about_us">
         Sobre Nosotros
@@ -61,19 +61,20 @@
 
     <!-- Botón Mostrar más / menos -->
     <div class="mt-6 text-center hidden">
-      <button
-        @click="expanded = !expanded"
-        class="bg-primary text-white px-6 py-2 rounded-full transition-all duration-300 hover:bg-primary/70 border-0"
-      >
+      <button @click="expanded = !expanded"
+        class="bg-primary text-white px-6 py-2 rounded-full transition-all duration-300 hover:bg-primary/70 border-0">
         {{ expanded ? "Mostrar menos" : "Mostrar más" }}
       </button>
     </div>
+
+    <StaffMembers />
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import StaffMembers from "./StaffMembers.vue";
+import Policy from "./Policy/Policy.vue";
 const expanded = ref(true);
 </script>
 
@@ -84,6 +85,7 @@ const expanded = ref(true);
     opacity 0.4s ease,
     transform 0.4s ease;
 }
+
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
