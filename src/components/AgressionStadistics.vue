@@ -1,31 +1,17 @@
 <template>
   <div class="grid">
     <!-- Selector -->
-    <MainViewSwitch
-      @selected="slectedTab = $event"
-      class="scale-110 md:scale-150 my-8 mx-auto w-fit"
-    />
+    <MainViewSwitch @selected="slectedTab = $event" class="scale-110 md:scale-150 my-8 mx-auto w-fit" />
 
     <!-- Animación de transición -->
     <Transition name="fade-slide" mode="out-in">
       <!-- Modo Explora -->
-      <div
-        v-if="slectedTab === 'explora'"
-        key="explora"
-        class="col-12 md:col-8"
-      >
-        <MapContainer
-          :markers="testimony"
-          class="h-full shadow-3 border-round z-10"
-        />
+      <div v-if="slectedTab === 'explora'" key="explora" class="col-12 md:col-8">
+        <MapContainer :markers="testimony" class="h-full shadow-3 border-round z-10" />
       </div>
 
       <!-- Modo Descubre -->
-      <div
-        v-else
-        key="descubre"
-        class="col-12 md:col-4 p-4 fade-slide-enter-active"
-      >
+      <div v-else key="descubre" class="col-12 md:col-4 p-4 fade-slide-enter-active">
         <div class="flex flex-col gap-6">
           <!-- Encabezado -->
           <div class="text-center">
@@ -40,16 +26,12 @@
           <!-- Tarjetas Resumen -->
           <div class="grid grid-cols-2 gap-4 text-center max-w-md mx-auto">
             <!-- Total Testimonies Card -->
-            <div
-              class="bg-purple-100 text-purple-800 py-4 px-2 rounded-xl shadow-md"
-            >
+            <div class="bg-purple-100 text-purple-800 py-4 px-2 rounded-xl shadow-md">
               <p class="font-bold text-lg">{{ total_testimonies }}</p>
               <p class="text-sm">Testimonios Totales</p>
             </div>
             <!-- Average per Category Card -->
-            <div
-              class="bg-purple-100 text-purple-800 py-4 px-2 rounded-xl shadow-md"
-            >
+            <div class="bg-purple-100 text-purple-800 py-4 px-2 rounded-xl shadow-md">
               <p class="font-bold text-lg">{{ averagePerCategory }}</p>
               <p class="text-sm">Promedio / Categoría</p>
             </div>
@@ -66,12 +48,8 @@
             <h2 class="text-xl font-semibold mb-3 text-center text-[#6f2465]">
               Distribución por Categoría
             </h2>
-            <Chart
-              type="bar"
-              :data="categoryChartData"
-              :options="categoryChartOptions"
-              class="max-w-2xl mx-auto h-[300px]"
-            />
+            <Chart type="bar" :data="categoryChartData" :options="categoryChartOptions"
+              class="max-w-2xl mx-auto h-[300px]" />
             <!-- Summary Cards for Categories (optional alternative/addition) -->
             <!-- <div class="grid grid-cols-2 gap-4 text-center max-w-md mx-auto mt-4">
               <div
@@ -90,17 +68,9 @@
             <h2 class="text-xl font-semibold mb-3 text-center text-[#6f2465]">
               Distribución por Edad
             </h2>
-            <Chart
-              type="bar"
-              :data="ageChartData"
-              :options="ageChartOptions"
-              class="max-w-2xl mx-auto h-[300px]"
-            />
+            <Chart type="bar" :data="ageChartData" :options="ageChartOptions" class="max-w-2xl mx-auto h-[300px]" />
             <!-- Optional: Add min/max/avg age display -->
-            <div
-              class="text-center mt-3 text-sm text-gray-600"
-              v-if="ageStatsSummary.min !== Infinity"
-            >
+            <div class="text-center mt-3 text-sm text-gray-600" v-if="ageStatsSummary.min !== Infinity">
               <span>Edad Mín: {{ ageStatsSummary.min }}</span> |
               <span>Edad Máx: {{ ageStatsSummary.max }}</span> |
               <span>Edad Prom: {{ ageStatsSummary.avg.toFixed(1) }}</span>
@@ -112,12 +82,8 @@
             <h2 class="text-xl font-semibold mb-3 text-center text-[#6f2465]">
               Distribución por Género
             </h2>
-            <Chart
-              type="doughnut"
-              :data="genderChartData"
-              :options="genderChartOptions"
-              class="max-w-xs mx-auto h-[250px]"
-            />
+            <Chart type="doughnut" :data="genderChartData" :options="genderChartOptions"
+              class="max-w-xs mx-auto h-[250px]" />
           </div>
         </div>
       </div>
@@ -340,7 +306,7 @@ const loadData = async () => {
         })
         .flat()
         .map((pos) => ({
-          position: [pos.location.lat, pos.location.lng],
+          position: [pos.location?.lat, pos.location?.lng],
           title: pos.name?.trim() || "Anónimo",
           description: pos.text,
           category: pos.category,
@@ -433,10 +399,12 @@ const loadData = async () => {
 .fade-slide-leave-active {
   transition: all 0.4s ease;
 }
+
 .fade-slide-enter-from {
   opacity: 0;
   transform: translateY(30px);
 }
+
 .fade-slide-leave-to {
   opacity: 0;
   transform: translateY(-20px);

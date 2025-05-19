@@ -1,42 +1,22 @@
 <template>
   <div class="w-full p-6 h-fit">
-    <h1
-      class="text-md lg:text-4xl font-bold mb-4 text-center max-w-2xl mx-auto"
-    >
+    <h1 class="text-md lg:text-4xl font-bold mb-4 text-center max-w-2xl mx-auto">
       Mapa colombiano de los delitos de abuso sexual y de conciencia cometidos
       en entornos eclesiásticos.
     </h1>
 
-    <div
-      class="map-container mx-auto max-w-4xl border-2 border-purple-200 rounded-xl overflow-hidden shadow-xl"
-    >
-      <l-map
-        class="!z-10"
-        ref="map"
-        :zoom="zoom"
-        :center="center"
-        :options="{ attributionControl: false }"
-      >
+    <div class="map-container mx-auto max-w-4xl border-2 border-purple-200 rounded-xl overflow-hidden shadow-xl">
+      <l-map class="!z-10" ref="map" :zoom="zoom" :center="center" :options="{ attributionControl: false }">
         <!-- Mapa más estilizado -->
-        <l-tile-layer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          layer-type="base"
-          name="Watercolor"
-        />
+        <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" layer-type="base" name="Watercolor" />
 
         <!-- Marcadores personalizados -->
-        <l-marker
-          v-for="(marker, index) in markers"
-          :key="index"
-          :lat-lng="marker.position"
-          :icon="customIcon(marker)"
-        >
+        <l-marker v-for="(marker, index) in markers" :key="index" :lat-lng="marker.position" :icon="customIcon(marker)">
           <l-popup>
             <div class="marker-popup">
               <h3 class="font-bold text-[#6f2465] mb-1">{{ marker.title }}</h3>
               <p class="text-sm text-gray-700">{{ marker.category.name }}</p>
-              <p class="text-sm text-gray-700 line-clamp-3">
-                {{ marker.description }}
+              <p class="text-sm text-gray-700 line-clamp-8" v-html="marker.description.replaceAll('\n', '<br />')">
               </p>
             </div>
           </l-popup>
