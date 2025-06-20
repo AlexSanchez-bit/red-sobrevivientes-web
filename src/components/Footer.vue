@@ -49,8 +49,8 @@
           </a>
         </p>
         <p class="hover-animation">
-          <a href="mailto:redsobrevivientescol@protonmail.com">
-            Correo: redsobrevivientescol@protonmail.com
+          <a href="mailto:marcos@sobrevivientes-clerical.org">
+            Correo: marcos@sobrevivientes-clerical.org
           </a>
         </p>
       </div>
